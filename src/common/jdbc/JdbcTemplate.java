@@ -13,10 +13,11 @@ public class JdbcTemplate {
 	public static Connection getConnection() {
 		
 		Connection conn = null;
-		Properties prop = null;
+		Properties prop = new Properties();
 		
 		try {
 			String currentPath = JdbcTemplate.class.getResource("./").getPath(); // 이 클래스의 경로를 currentPath에 담기
+			System.out.println(currentPath);
 			prop.load(new BufferedReader(new FileReader(currentPath+"driver.properties"))); 
 													// (여기+properties파일 경로)
 			
@@ -24,6 +25,9 @@ public class JdbcTemplate {
 			conn = DriverManager.getConnection(prop.getProperty("db.url"),
 												prop.getProperty("db.user"),
 												prop.getProperty("db.pwd"));
+			if(conn != null) {
+				System.out.println("DB 연결 성공");
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -1,8 +1,12 @@
 package kh.s0.myboard.member.model;
 
 import java.sql.Date;  // 중요 
+import java.util.List;
+
+import kh.s0.myboard.board.model.BoardFileVo;
 
 public class MemberVo {
+	
 //	MID       NOT NULL VARCHAR2(30)  
 //	MPWD      NOT NULL VARCHAR2(20)  
 //	MNAME     NOT NULL VARCHAR2(100) 
@@ -12,6 +16,7 @@ public class MemberVo {
 //	MCONSENT1 NOT NULL NUMBER(3)     
 //	MTYPE     NOT NULL NUMBER(1)     
 //	BUSNO              VARCHAR2(30)  
+	
 	private String mid;
 	private String mpwd;
 	private String mname;
@@ -20,16 +25,24 @@ public class MemberVo {
 	private String mauthcode;
 	private int mconsent1;
 	private int mtype;
+	// BusinessInfoVo 사용하지 않고 분리해서 사용
 	private String busno;
-	public MemberVo() {
-		super();
-	}
+	
+	
+//	BUSINESS_INFO 테이블에 대한 방법 1
+//	private List<BusinessInfoVo> businfolist;
+	
+	
+	
+	// toString, 게터세터
+
 	@Override
 	public String toString() {
 		return "MemberVo [mid=" + mid + ", mpwd=" + mpwd + ", mname=" + mname + ", memail=" + memail + ", mentrance="
 				+ mentrance + ", mauthcode=" + mauthcode + ", mconsent1=" + mconsent1 + ", mtype=" + mtype + ", busno="
 				+ busno + "]";
 	}
+	
 	public String getMid() {
 		return mid;
 	}

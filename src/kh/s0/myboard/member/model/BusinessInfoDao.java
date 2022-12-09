@@ -9,12 +9,11 @@ import java.util.List;
 
 import common.jdbc.JdbcTemplate;
 
-// Member + BusinessInfo 함께
-public class MemberDao {
+public class BusinessInfoDao {
 	
 	// insert
-	public int insert(Connection conn, MemberVo vo) {
-		System.out.println(">>>>MemberDao Param : " + vo);
+	public int insert(Connection conn, BusinessInfoVo vo) {
+		System.out.println(">>>>BusinessInfoDao Param : " + vo);
 		int result = 0;
 		
 		String sql = ""; // TODO
@@ -29,21 +28,21 @@ public class MemberDao {
 		} finally {
 			JdbcTemplate.close(pstmt);
 		}
-		System.out.println(">>>>MemberDao Return : " + result);
+		System.out.println(">>>>BusinessInfoDao Return : " + result);
 		return result;
 	}
 	
 	// update
-	public int update(Connection conn, MemberVo vo, String mid /*여기에는 주로 기본키가 들어감*/) {
+	public int update(Connection conn, BusinessInfoVo vo, String busno /*여기에는 주로 기본키가 들어감*/) {
 		int result = 0;
 		
-		String sql = "update board set mpwd=? memail=? where mid=?"; // TODO
+		String sql = "update board set busname=? busceoname=? where busno=?"; // TODO
 		PreparedStatement pstmt = null;
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, vo.getMpwd());
-			pstmt.setString(2, vo.getMemail());
-			pstmt.setString(3, mid);
+			pstmt.setString(1, vo.getBusname());
+			pstmt.setString(2, vo.getBusceoname());
+			pstmt.setString(3, busno);
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -54,14 +53,14 @@ public class MemberDao {
 	}
 	
 	// delete
-	public int delete(Connection conn, String mid /*여기에는 주로 기본키가 들어감*/) {
+	public int delete(Connection conn, String busno /*여기에는 주로 기본키가 들어감*/) {
 		int result = 0;
 		
-		String sql = "delete from member where mid=?";
+		String sql = "delete from business_info where busno=?";
 		PreparedStatement pstmt = null;
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, mid);
+			pstmt.setString(1, busno);
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -72,10 +71,10 @@ public class MemberDao {
 	}
 	
 	// selectList : 게시글 목록 조회 (리턴 모양이 중요!)
-	public List<MemberVo> selectList(Connection conn) {
-		List<MemberVo> volist = null;
-		
-		String sql = "select * from member";
+	public List<BusinessInfoVo> selectList(Connection conn) {
+		List<BusinessInfoVo> volist = null;
+
+		String sql = "select * from business_info";
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
@@ -83,17 +82,12 @@ public class MemberDao {
 			rs = pstmt.executeQuery();
 			// TODO
 			if (rs.next()) {
-				volist = new ArrayList<MemberVo>();
+				volist = new ArrayList<BusinessInfoVo>();
 				do {
-					MemberVo vo = new MemberVo();
-					vo.setMauthcode(rs.getString("mauthcode"));
-					vo.setMconsent1(rs.getInt("mconsent1"));
-					vo.setMemail(rs.getString("memail"));
-					vo.setMentrance(rs.getDate("mentrance"));
-					vo.setMid(rs.getString("mid"));
-					vo.setMname(rs.getString("mname"));
-					vo.setMpwd(rs.getString("mpwd"));
-					vo.setMtype(rs.getInt("mtype"));
+					BusinessInfoVo vo = new BusinessInfoVo();
+					vo.setBusceoname(rs.getString("busceoname"));
+					vo.setBuscertification(rs.getString("buscertification"));
+					vo.setBusname(rs.getString("busname"));
 					vo.setBusno(rs.getString("busno"));
 					
 					volist.add(vo);
@@ -109,27 +103,22 @@ public class MemberDao {
 	}
 	
 	// selectOne : 게시글 하나 상세 조회
-	public MemberVo selectOne(Connection conn, String mid /*여기에는 주로 기본키가 들어감*/) {
-		MemberVo vo = null;
+	public BusinessInfoVo selectOne(Connection conn, String busno /*여기에는 주로 기본키가 들어감*/) {
+		BusinessInfoVo vo = null;
 		
-		String sql = "select * from member where mid=?";
+		String sql = "select * from business_info where busno=?";
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, mid);
+			pstmt.setString(1, busno);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
-				vo = new MemberVo();
+				vo = new BusinessInfoVo();
 				
-				vo.setMauthcode(rs.getString("mauthcode"));
-				vo.setMconsent1(rs.getInt("mconsent1"));
-				vo.setMemail(rs.getString("memail"));
-				vo.setMentrance(rs.getDate("mentrance"));
-				vo.setMid(rs.getString("mid"));
-				vo.setMname(rs.getString("mname"));
-				vo.setMpwd(rs.getString("mpwd"));
-				vo.setMtype(rs.getInt("mtype"));
+				vo.setBusceoname(rs.getString("busceoname"));
+				vo.setBuscertification(rs.getString("buscertification"));
+				vo.setBusname(rs.getString("busname"));
 				vo.setBusno(rs.getString("busno"));
 			}
 		} catch (SQLException e) {

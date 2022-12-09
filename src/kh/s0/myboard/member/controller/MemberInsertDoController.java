@@ -1,4 +1,4 @@
-package kh.s0.myboard.board.controller;
+package kh.s0.myboard.member.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,20 +7,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kh.s0.myboard.board.model.BoardService;
-import kh.s0.myboard.board.model.BoardVo;
+import kh.s0.myboard.member.model.MemberService;
+import kh.s0.myboard.member.model.MemberVo;
 
 /**
- * Servlet implementation class BoardWriteDoController
+ * Servlet implementation class MemberInsertDoController
  */
-@WebServlet("/board/write.do")
-public class BoardWriteDoController extends HttpServlet {
+@WebServlet("/MemberInsertDoController")
+public class MemberInsertDoController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BoardWriteDoController() {
+    public MemberInsertDoController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,26 +29,16 @@ public class BoardWriteDoController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("MemberInsertDoController");
 		
-		String btitle = request.getParameter("btitle");
-		String bcontent = request.getParameter("bcontent");
-		System.out.println(btitle);
-		System.out.println(bcontent);
-		
-		
-		BoardService service = new BoardService();
-		BoardVo vo = new BoardVo();
-		vo.setBtitle(btitle);
-		vo.setBcontent(bcontent);
-		
+		MemberVo vo = new MemberVo(); // TODO
+		MemberService service = new MemberService();
 		int result = service.insert(vo);
 		System.out.println(result);
 	}

@@ -31,8 +31,21 @@ public class BoardListController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("boardlistcontroller");
 		BoardService service = new BoardService();
 		List<BoardVo> volist = service.selectList();
+		System.out.println(volist);
+	
+		
+		request.setAttribute("aaa", volist); // aaa라는 String에 volist를 대입(?)해줌 -> jsp파일에서 volist를 호출하기 위해aaa 사용 가능
+		String viewPath = "/WEB-INF/view/boardlist.jsp"; // 이부분만 계속 바꿔서 사용하면됨
+		request.getRequestDispatcher(viewPath).forward(request, response);
+		
+		
+		
+		// 페이지 이동 방법 2개
+//		response.sendRedirect("대부분99%/url"); -> 이건 url이 바뀌는거
+//		request.getRequestDispatcher("대부분99%/WEB-INF/view/xxx.jsp").forward(request, response); --> 이건 url은 그대로, jsp파일이 열리는거
 	}
 
 	/**

@@ -1,4 +1,4 @@
-package kh.s0.myboard.board.controller;
+package kh.s0.myboard.member.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,20 +7,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kh.s0.myboard.board.model.BoardService;
-import kh.s0.myboard.board.model.BoardVo;
+import kh.s0.myboard.member.model.BusinessInfoService;
+import kh.s0.myboard.member.model.BusinessInfoVo;
 
 /**
- * Servlet implementation class BoardUpdateController
+ * Servlet implementation class BusinessInfoSelectOneController
  */
-@WebServlet("/board/update")
-public class BoardUpdateController extends HttpServlet {
+@WebServlet("/BusinessInfoSelectOneController")
+public class BusinessInfoSelectOneController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BoardUpdateController() {
+    public BusinessInfoSelectOneController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,18 +29,18 @@ public class BoardUpdateController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		System.out.println("MemberSelectOnBusinessInfoSelectOneControllereController");
+		
+		String busno = ""; //TODO
+		BusinessInfoService service = new BusinessInfoService();
+		BusinessInfoVo vo = service.selectOne(busno);
+		System.out.println(vo);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		BoardService service = new BoardService();
-		BoardVo vo = new BoardVo();
-		int result = service.update(vo, 1);
-		System.out.println(result);
-	}
+//	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//	}
 
 }
