@@ -39,6 +39,20 @@ public class BoardWriteController extends HttpServlet {
 		// 페이지 이동 방법 2개
 //		response.sendRedirect("대부분99%/url"); -> 이건 url이 바뀌는거
 //		request.getRequestDispatcher("대부분99%/WEB-INF/view/xxx.jsp").forward(request, response); --> 이건 url은 그대로, jsp파일이 열리는거
+		
+		
+		
+		
+		
+		// 전혀 무관한 학습용 코드!!
+		
+		// JSP의 내장 객체
+//		response.getWriter(); // JSP out 객체
+//		request.getSession(); // JSP session 객체
+//		request.getSession().invalidate();
+		
+		
+		
 	}
 
 	/**

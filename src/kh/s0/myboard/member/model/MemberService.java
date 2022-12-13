@@ -49,4 +49,23 @@ public class MemberService {
 		JdbcTemplate.close(conn);
 		return vo;
 	}
+	// selectOne - login
+	public MemberVo login(String mid, String mpwd) {
+		MemberVo vo = null;
+		Connection conn = JdbcTemplate.getConnection();
+		vo = dao.login(conn, mid, mpwd);
+		JdbcTemplate.close(conn);
+		return vo;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

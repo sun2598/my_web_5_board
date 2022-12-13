@@ -34,6 +34,11 @@
 	<h1>게시글목록</h1>
 	
 <%
+// 전혀 무관한 학습용 코드!!
+// JSP의 내장 객체
+//out.append("aaa"); // response.getWriter(); // JSP out 객체
+//session.getAttribute("aaa"); // request.getSession(); // JSP session 객체
+
 	List<BoardVo> volist = (List<BoardVo>)request.getAttribute("aaa"); // 형변환.
 	
 	if (volist == null) { 

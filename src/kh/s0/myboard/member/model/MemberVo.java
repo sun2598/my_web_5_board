@@ -3,8 +3,6 @@ package kh.s0.myboard.member.model;
 import java.sql.Date;  // 중요 
 import java.util.List;
 
-import kh.s0.myboard.board.model.BoardFileVo;
-
 public class MemberVo {
 	
 //	MID       NOT NULL VARCHAR2(30)  
