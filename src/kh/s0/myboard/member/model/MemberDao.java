@@ -145,6 +145,9 @@ public class MemberDao {
 	public MemberVo login(Connection conn, String mid, String mpwd) {
 		MemberVo vo = null;
 		
+		System.out.println("DAO login");
+		System.out.println(mid);
+		System.out.println(mpwd);
 		// 로그인할때 session에 저장할 필요가 있는 항목만. ( * 쓰지 않음. 속도 저하의 원인)
 		String sql = "select mid, mname, mauthcode, mtype, busno from member where mid=? and mpwd=?";
 		PreparedStatement pstmt = null;

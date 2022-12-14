@@ -27,7 +27,8 @@ if(loginSsInfo == null) {
 	<div class="wrap_login">
 	
 	<!-- 여기서부터 ajax -->
-	<%-- <form action="<%= request.getContextPath() %>/login.do" method="post"> --%>
+	<!-- <form action="<%= request.getContextPath() %>/login.lo" method="post"> -->
+	<form id="frm_login">
 		<fieldset>
 			<legend>로그인</legend>
 			id: <input type="text" name="mid" id="mid"> <!-- name은 db의 컬럼명으로 하는게 좋음 -->
@@ -36,6 +37,7 @@ if(loginSsInfo == null) {
 			<br>
 			<button type="button" class="btn loginajax">ajax로그인</button>
 		</fieldset>
+	</form>
 	<!-- </form> -->
 	</div>
 	
@@ -75,23 +77,68 @@ function LoginClickHandler(){
 }
 function LoginajaxClickHandler(){
 	console.log("LoginajaxClickHandler");
+	
+	// 방법 2 -> mid=user1&mpwd=user1 형태의 쿼리 (회원가입처럼 여러개 항목을 넘겨야할때 이 방법 사용)
+	var formQuery = $("#frm_login").serialize();
+	console.log(formQuery);
+	
+	// 장바구니 -> 배열 형태
+	var orderList = [];
+	var order1 = {pno:21, amount:2}; // for문 돌려야함(지금은 그냥)
+	var order2 = {pno:31, amount:7};
+	var order3 = {pno:41, amount:3};
+	orderList.push(order1);
+	orderList.push(order2);
+	orderList.push(order3);
+	
+	console.log(JSON.stringify(orderList));
+	
+	
 	$.ajax({
-		url : "/login.lo",
+		url : "<%=request.getContextPath()%>/login.lo",
 		type : "post",
-		data : { // url로 전달할 데이터. Object 타입으로 전달됨
-			mid : $("mid").val(),
-			mpwd : $("mpwd").val()
-		}, 
 		
-		success : function(responsevalue){ // success의 콜백함수의 매개인자(responsevalue)에 url에서 전달해준 값이 들어있음
-			console.log(responsevalue);
-			if(responsevalue == "ok") {
-				$(".wrap_logout").show();
-				$(".wrap_login").hide();
-			}
+		contentType : "application/json", // url로 전달'할' 데이터의 타입
+		data : // url로 전달'할' 데이터. Object 타입으로 전달됨
+			
+			// 방법 3 -> json 형태
+			JSON.stringify(orderList)
+		
+			// 방법 2 -> mid=user1&mpwd=user1 형태의 쿼리 (회원가입처럼 여러개 항목을 넘겨야할때 이 방법 사용)
+//			$("#frm_login").serialize()
+		
+			// 방법 1 -> object 형태의 쿼리 (로그인할땐 두개만 넘기면 되니까 이 방법 사용해도됨)
+//			{ 
+//				mid : $("#mid").val(),
+//				mpwd : $("#mpwd").val()
+//			}
+		, 
+		
+		dataType : "json", // url로부터 전달'받은' 데이터의 타입 (json, xml, text 등)
+		// success의 콜백함수
+		success : function(data){ // (data) : url로부터 전달'받은' 데이터
+			console.log(data);
+		
+		
+			// 세션 체크 
+			// (ajax는 데이터를 주고받는데 목적이 있어 세션의 변화를 감지하지 못함. url이 그대로이기 때문에)
+			// -> 그래서 ajax는 로그인에서 잘 사용하진 않음.
+			var sessionCheck = '<%=request.getSession().getAttribute("loginSsInfo")%>';
+//			console.log(sessionCheck);
+		
+//			location.reload(); // f5 새로고침 효과
+
+			if(.data)
 		},
-		error : function(e){ // error의 콜백함수의 매개인자(e)에 url에서 전달해준 값 + 오류내용이 들어있음
-			console.log(e.responseText);
+		
+		// error의 콜백함수
+		error : function(request, status, error){ // (매개변수) : url로부터 전달'받은' 데이터 + 오류내용
+			console.log(request);
+			console.log(status);
+			console.log(error);
+			alert("code:" + request.status + "\n" + 
+					"message" + request.responseText + "\n" + 
+					"error" + error );
 		}
 	});
 }
