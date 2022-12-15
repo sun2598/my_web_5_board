@@ -19,7 +19,6 @@ public class CalcAjaxController extends HttpServlet {
      */
     public CalcAjaxController() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -28,14 +27,6 @@ public class CalcAjaxController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String viewPath = "WEB-INF/view/ajax/ajaxTestCalc.jsp";
 		request.getRequestDispatcher(viewPath).forward(request, response);
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
 	}
 
 }

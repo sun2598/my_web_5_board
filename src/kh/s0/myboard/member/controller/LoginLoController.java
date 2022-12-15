@@ -22,7 +22,7 @@ import kh.s0.myboard.member.model.TestJsonVo;
 /**
  * Servlet implementation class LoginLoController
  */
-@WebServlet("/login.lo")
+@WebServlet("/login.lo") // jsp파일의 ajax url과 동일
 public class LoginLoController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -46,31 +46,8 @@ public class LoginLoController extends HttpServlet {
 //		ajax에서는 페이지 이동 코드를 작성하지 않음!! 데이터만 전달해줌
 		
 		PrintWriter out = response.getWriter();
-//		out.append("a");
-//		out.println("b");
 
 		Gson gson = new Gson();
-		
-//----------------------------------------------------------------------------------------------------		
-		// TODO 임시코드 - json test를 위해
-		BufferedReader br = request.getReader();
-		String requestData = br.readLine();
-//		System.out.println(requestData); // [{"pno":21,"amount":2},{"pno":31,"amount":7},{"pno":41,"amount":3}] 이걸 읽어와서 출력함
-		
-		// gson 예전 버전에서 지원하던 방식
-//		ArrayList<TestJsonVo> testjsonlist = gson.fromJson(requestData.toString(), new TypeToken<ArrayList<TestJsonVo>>.getClass());
-		// 현재버전방식
-		TestJsonVo[] testjsonArray = gson.fromJson(requestData, TestJsonVo[].class); // fromJson : json -> 여기선 배열 형태로 변환
-//		for(TestJsonVo vo : testjsonArray) {
-//			System.out.println(vo);
-//		}
-//		System.out.println(testjsonArray);
-		List<TestJsonVo> testjsonlist = Arrays.asList(testjsonArray); // 배열에서 컬렉션(list)으로 변환
-		
-//		String mid = "user1";
-//		String mpwd = "user1";
-		
-//----------------------------------------------------------------------------------------------------		
 		
 		
 		String mid = request.getParameter("mid");
@@ -104,6 +81,29 @@ public class LoginLoController extends HttpServlet {
 		
 		out.flush();
 		out.close(); // 여기까지 해줘야 ajax 전송 완료
+		
+		
+		
+//----------------------------------------------------------------------------------------------------		
+		// TODO 임시코드 - json test를 위해
+		BufferedReader br = request.getReader();
+		String requestData = br.readLine();
+//		System.out.println(requestData); // [{"pno":21,"amount":2},{"pno":31,"amount":7},{"pno":41,"amount":3}] 이걸 읽어와서 출력함
+		
+		// gson 예전 버전에서 지원하던 방식
+//		ArrayList<TestJsonVo> testjsonlist = gson.fromJson(requestData.toString(), new TypeToken<ArrayList<TestJsonVo>>.getClass());
+		// 현재버전방식
+		TestJsonVo[] testjsonArray = gson.fromJson(requestData, TestJsonVo[].class); // fromJson : json -> 여기선 배열 형태로 변환
+//		for(TestJsonVo vo : testjsonArray) {
+//			System.out.println(vo);
+//		}
+//		System.out.println(testjsonArray);
+		List<TestJsonVo> testjsonlist = Arrays.asList(testjsonArray); // 배열에서 컬렉션(list)으로 변환
+		
+//		String mid = "user1";
+//		String mpwd = "user1";
+		
+//----------------------------------------------------------------------------------------------------		
 	}
 
 }

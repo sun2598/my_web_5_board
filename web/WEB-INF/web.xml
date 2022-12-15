@@ -33,6 +33,21 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 
+	<!-- 교재 75p -->
+	<filter>
+		<filter-name>MyFilter</filter-name>
+		<filter-class>first.loginSv.filter.MyFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>MyFilter</filter-name>
+		<url-pattern>*.login</url-pattern>
+	</filter-mapping>
+
+	<!-- 교재 79p -->
+	<listener>
+		<listener-class>first.member.listener.SessionListener</listener-class>
+	</listener>
+
 	<!-- JDBC DBCP(Database Connection Pool) : 클라이언트가 여러명 들어왔을때 순서대로 처리 -->
 
 	<!-- Error code 따라 Page 연결 (404에러, 405에러, 500에러, NullPointerException 등) 
