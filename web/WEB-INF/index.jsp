@@ -1,15 +1,36 @@
 <%@page import="kh.s0.myboard.member.model.MemberVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%-- errorPage="./view/error/alert.jsp" --%>    
+<%-- JSP주석
+
+<%! 선언 %>  -> 변수선언O, 함수선언O
+
+<%= 표현식 %>  -> 문자열, 변수, 함수리턴값 출력, (클라이언트에 출력할 내용), ; 사용하면 안됨.
+
+<% 스크립틀릿 %> -> java 문법 그대로 사용 가능한 영역, 변수선언X, 함수선언O
+
+--%> 
+
+<%! int maxCnt = 5000; %>
+<% String ctxPath = request.getContextPath(); %>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>나의 계층형 게시판 메인페이지</title>
-<link href="<%=request.getContextPath()%>/css/reset.css" rel="stylesheet">
-<script src="<%=request.getContextPath()%>/js/jquery-3.6.1.js"></script>
+<link href="<%=ctxPath%>/css/reset.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/css/header.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/css/footer.css" rel="stylesheet">
+<script src="<%=ctxPath%>/js/jquery-3.6.1.js"></script>
 </head>
 <body>
+
+<%@ include file="/WEB-INF/view/header.jsp" %>
+
+<%@ include file="/WEB-INF/view/boardwrite.jsp" %>
+
 <%
 // 스크립틀릿
 MemberVo loginSsInfo = (MemberVo)request.getSession().getAttribute("loginSsInfo"); // 형변환
@@ -27,7 +48,7 @@ if(loginSsInfo == null) {
 	<div class="wrap_login">
 	
 	<!-- 여기서부터 ajax -->
-	<!-- <form action="<%= request.getContextPath() %>/login.lo" method="post"> -->
+	<!-- <form action="<%=ctxPath %>/login.lo" method="post"> -->
 	<form id="frm_login">
 		<fieldset>
 			<legend>로그인</legend>
@@ -57,7 +78,11 @@ if(loginSsInfo == null) {
 }
 %>
 
+<%@ include file="/WEB-INF/view/boardwrite.jsp" %>
+<jsp:include page="/WEB-INF/view/boardwrite.jsp"></jsp:include>
 
+<!-- iframe -->
+<iframe width="560" height="315" src="https://www.youtube.com/embed/kMYIja9m-no" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 <script>
 $(function(){
@@ -69,11 +94,11 @@ $(function(){
 });
 function BoardClickHandler(){
 	console.log("BoardClickHandler");
-	location.href = "<%=request.getContextPath()%>/board/list";
+	location.href = "<%=ctxPath%>/board/list";
 }
 function LoginClickHandler(){
 	console.log("LoginClickHandler");
-	location.href = "<%=request.getContextPath()%>/login";
+	location.href = "<%=ctxPath%>/login";
 }
 function LoginajaxClickHandler(){
 	console.log("LoginajaxClickHandler");
@@ -95,7 +120,7 @@ function LoginajaxClickHandler(){
 	
 	
 	$.ajax({
-		url : "<%=request.getContextPath()%>/login.lo",
+		url : "<%=ctxPath%>/login.lo",
 		type : "post",
 		
 		contentType : "application/json", // url로 전달'할' 데이터의 타입
