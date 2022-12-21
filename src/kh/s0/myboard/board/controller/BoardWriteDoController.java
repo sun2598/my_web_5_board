@@ -50,14 +50,8 @@ public class BoardWriteDoController extends HttpServlet {
 			bwriter = loginSsInfo.getMid();
 		}
 		
-		
-		
-		
 		String btitle = request.getParameter("btitle");
 		String bcontent = request.getParameter("bcontent");
-		System.out.println(btitle);
-		System.out.println(bcontent);
-		
 		
 		BoardService service = new BoardService();
 		BoardVo vo = new BoardVo();
@@ -66,7 +60,6 @@ public class BoardWriteDoController extends HttpServlet {
 		vo.setBwriter(bwriter);
 		
 		int result = service.insert(vo);
-		System.out.println(result);
 		
 		if(result > 0) { // 작성 성공시
 			

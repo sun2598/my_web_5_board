@@ -29,7 +29,6 @@
 
 <%@ include file="/WEB-INF/view/header.jsp" %>
 
-<%@ include file="/WEB-INF/view/boardwrite.jsp" %>
 
 <%
 // 스크립틀릿
@@ -78,8 +77,6 @@ if(loginSsInfo == null) {
 }
 %>
 
-<%@ include file="/WEB-INF/view/boardwrite.jsp" %>
-<jsp:include page="/WEB-INF/view/boardwrite.jsp"></jsp:include>
 
 <!-- iframe -->
 <iframe width="560" height="315" src="https://www.youtube.com/embed/kMYIja9m-no" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

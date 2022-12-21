@@ -1,9 +1,12 @@
 package kh.s0.myboard.member.model;
 
 import java.sql.Connection;
+
 import java.util.List;
 
 import common.jdbc.JdbcTemplate;
+
+import static common.jdbc.JdbcTemplate.*;
 
 public class MemberService {
 	

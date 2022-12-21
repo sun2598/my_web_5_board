@@ -38,7 +38,7 @@ public class BoardListController extends HttpServlet {
 	
 		// request.setAttribute() -> forward 방식만 사용 가능
 		request.setAttribute("aaa", volist); // aaa라는 String에 volist를 대입(?)해줌 -> jsp파일에서 volist를 호출하기 위해 aaa 사용 가능
-		String viewPath = "/WEB-INF/view/boardlist.jsp"; // 이부분만 계속 바꿔서 사용하면됨. 여기엔 <%=request.getContextPath()%> 작성 안함 (forward방식은 애초에 contextpath가 유지가 됨)
+		String viewPath = "/WEB-INF/view/boardlist_jstl_el.jsp"; // 이부분만 계속 바꿔서 사용하면됨. 여기엔 <%=request.getContextPath()%> 작성 안함 (forward방식은 애초에 contextpath가 유지가 됨)
 		request.getRequestDispatcher(viewPath).forward(request, response);
 		
 		
