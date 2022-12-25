@@ -11,8 +11,11 @@
 </head>
 <body>
 <script>
+<%-- 	
 	var msg = "<%= request.getAttribute("msg")%>";
-	alert(msg);
+	alert(msg); 
+--%>
+	alert("${msg}");
 	location.replace = "<%= request.getContextPath()%>/board/write";
 </script>	
 </body>

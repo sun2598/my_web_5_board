@@ -83,7 +83,7 @@
                             <form action="noticeWrite" method="post">
                                  <div >제목:<input type="text" name="btitle"></div>
                                  <div >내용:<textarea name="bcontent" cols="30" rows="5" ></textarea></div>
-                                 <div ><button type="submit">글등록</button></textarea></div>
+                                 <div ><button type="submit">글등록</button></div>
                             	<input type="hidden" name="bno" value="${param.bno }">
                             </form>
                              </li>
@@ -98,11 +98,7 @@
                 <!-- 광고 -->
                 <!-- 3번째 section - instagram -->
 			</div>
-            <div id="scrollup">
-                <a href="#">
-                    <span></span>
-                </a>
-            </div>
+
             <%@include file="/WEB-INF/view/scrollup_nav.jsp" %>
         </div>
     <%@include file="/WEB-INF/view/footer.jsp" %>
